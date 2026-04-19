@@ -1,0 +1,530 @@
+/* ─── RESET + BASE ─────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f5f5;
+  color: #1a1a1a;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ─── DARK MODE ─────────────────────────────────────────── */
+body.dark {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+.dark .navbar       { background: #1e1e1e; border-color: #333; }
+.dark .food-card    { background: #1e1e1e; border-color: #333; }
+.dark .form-card    { background: #1e1e1e; border-color: #333; }
+.dark .settings-card{ background: #1e1e1e; border-color: #333; }
+.dark .summary-card { background: #1e1e1e; }
+.dark input, .dark select { background: #2a2a2a; color: #e0e0e0; border-color: #444; }
+
+/* ─── NAVBAR ─────────────────────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d6a4f;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #555;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.nav-link:hover  { background: #f0f0f0; color: #222; }
+.nav-link.active { background: #2d6a4f; color: white; }
+
+/* ─── PAGE ───────────────────────────────────────────────── */
+.page-content { padding: 24px; max-width: 1100px; margin: 0 auto; }
+
+.page { padding-bottom: 40px; }
+
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2d6a4f;
+}
+
+/* ─── SUMMARY BAR ────────────────────────────────────────── */
+.summary-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summary-num   { font-size: 28px; font-weight: 700; }
+.summary-label { font-size: 12px; color: #888; }
+
+.summary-card.total    .summary-num { color: #333; }
+.summary-card.fresh    .summary-num { color: #2d6a4f; }
+.summary-card.expiring .summary-num { color: #e07b00; }
+.summary-card.expired  .summary-num { color: #c0392b; }
+
+/* ─── FOOD GRID ──────────────────────────────────────────── */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* ─── FOOD CARD ──────────────────────────────────────────── */
+.food-card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  border-left: 5px solid #ccc;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.food-card.fresh    { border-left-color: #2d6a4f; }
+.food-card.expiring { border-left-color: #e07b00; }
+.food-card.expired  { border-left-color: #c0392b; }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.food-name { font-size: 16px; font-weight: 600; }
+
+.status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.status-badge.fresh    { background: #d4edda; color: #155724; }
+.status-badge.expiring { background: #fff3cd; color: #856404; }
+.status-badge.expired  { background: #f8d7da; color: #721c24; }
+
+.expiry-date { font-size: 13px; color: #888; }
+
+.days-left {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.food-card.fresh    .days-left { color: #2d6a4f; }
+.food-card.expiring .days-left { color: #e07b00; }
+.food-card.expired  .days-left { color: #c0392b; }
+
+.delete-btn {
+  margin-top: auto;
+  background: none;
+  border: 1px solid #e0e0e0;
+  color: #c0392b;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover { background: #fff0f0; border-color: #c0392b; }
+
+/* ─── ALERT BANNER ───────────────────────────────────────── */
+.alert-banner {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #856404;
+}
+
+/* ─── EMPTY STATE ────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  font-size: 16px;
+  line-height: 2;
+}
+
+.success-state { color: #2d6a4f; }
+
+/* ─── ADD FOOD FORM ──────────────────────────────────────── */
+.form-card {
+  background: white;
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 480px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label { font-size: 14px; font-weight: 600; color: #444; }
+
+.form-group input {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-group input:focus { border-color: #2d6a4f; }
+
+.submit-btn {
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover { background: #245a40; }
+
+.msg {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.msg.error   { background: #f8d7da; color: #721c24; }
+.msg.success { background: #d4edda; color: #155724; }
+
+/* ─── SEARCH PAGE ────────────────────────────────────────── */
+.search-controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+
+.search-input {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  max-width: 480px;
+}
+
+.search-input:focus { border-color: #2d6a4f; }
+
+.filter-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.filter-btn {
+  padding: 6px 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.filter-btn.active        { color: white; border-color: transparent; }
+.filter-btn.all.active    { background: #555; }
+.filter-btn.fresh.active  { background: #2d6a4f; }
+.filter-btn.expiring.active { background: #e07b00; }
+.filter-btn.expired.active  { background: #c0392b; }
+
+.result-count { font-size: 13px; color: #888; margin-bottom: 16px; }
+.alerts-count { font-size: 14px; color: #888; margin-bottom: 16px; }
+
+/* ─── SETTINGS PAGE ──────────────────────────────────────── */
+.settings-card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  max-width: 500px;
+}
+
+.setting-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+.setting-desc  { font-size: 13px; color: #888; margin-bottom: 14px; }
+
+.setting-control { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+
+.number-input {
+  width: 70px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Toggle Switch */
+.toggle-switch { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.toggle-switch input { display: none; }
+
+.toggle-slider {
+  width: 48px;
+  height: 26px;
+  background: #ccc;
+  border-radius: 13px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.toggle-slider::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: left 0.3s;
+}
+
+.toggle-switch input:checked + .toggle-slider { background: #2d6a4f; }
+.toggle-switch input:checked + .toggle-slider::after { left: 25px; }
+
+.toggle-label { font-size: 14px; }
+
+.danger-card   { border-left: 4px solid #c0392b; }
+.danger-btn {
+  background: #c0392b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.danger-btn:hover { background: #a93226; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .summary-bar { grid-template-columns: repeat(2, 1fr); }
+  .nav-links   { gap: 4px; }
+  .nav-link    { padding: 5px 10px; font-size: 13px; }
+  .page-content { padding: 16px; }
+}
+/* ─── CHART ──────────────────────────────────────────────── */
+.summary-wrapper {
+  margin-bottom: 28px;
+}
+
+.chart-wrapper {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 16px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  position: relative;
+}
+
+.dark .chart-wrapper {
+  background: #1e1e1e;
+}
+
+.chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Donut ke center mein total dikhana */
+.chart-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.chart-total-num {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d6a4f;
+  line-height: 1;
+}
+
+.chart-total-label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.chart-empty {
+  text-align: center;
+  padding: 20px;
+  color: #aaa;
+  font-size: 14px;
+}
+/* ─── DONUT CHART ────────────────────────────────────────── */
+.chart-wrapper {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+
+.dark .chart-wrapper { background: #1e1e1e; }
+
+.chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.donut-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.donut-wrap svg {
+  width: 200px;
+  height: 200px;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.donut-num {
+  display: block;
+  font-size: 36px;
+  font-weight: 700;
+  color: #2d6a4f;
+  line-height: 1;
+}
+
+.donut-label {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-text {
+  font-size: 14px;
+  color: #555;
+  flex: 1;
+}
+
+.legend-count {
+  font-size: 15px;
+  font-weight: 700;
+  color: #222;
+  min-width: 24px;
+  text-align: right;
+}
+
+.dark .legend-text  { color: #aaa; }
+.dark .legend-count { color: #eee; }
+
+.chart-empty {
+  text-align: center;
+  padding: 30px;
+  color: #aaa;
+  font-size: 14px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
