@@ -1,22 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// useNavigate: programmatically page change karta hai
-// Form submit hone ke baad Home pe bhejenge
-
 function AddFood({ addFood }) {
   const [name, setName] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const navigate = useNavigate(); // page redirect ke liye
+  const navigate = useNavigate(); 
 
-  // Aaj ki date — past date allow nahi karenge
-  const today = new Date().toISOString().split("T")[0]; // "2025-04-12" format
+
+  const today = new Date().toISOString().split("T")[0]; 
 
   function handleSubmit() {
-    // ─── VALIDATION ───────────────────────────────────────
+    
     if (!name.trim()) {
       setError("Food name cannot be empty.");
       return;
@@ -26,21 +23,19 @@ function AddFood({ addFood }) {
       return;
     }
 
-    // Past date check
     if (expiryDate < today) {
       setError("Warning: This item is already expired! Still adding...");
-      // Add karo lekin warning dikhao
+    
       addFood(name.trim(), expiryDate);
       setName("");
       setExpiryDate("");
       setTimeout(() => {
         setError("");
-        navigate("/"); // 2 sec baad home pe jao
+        navigate("/"); 
       }, 2000);
       return;
     }
 
-    // ─── SUCCESS ──────────────────────────────────────────
     setError("");
     addFood(name.trim(), expiryDate);
     setSuccess(`"${name}" added successfully!`);
@@ -49,7 +44,7 @@ function AddFood({ addFood }) {
 
     setTimeout(() => {
       setSuccess("");
-      navigate("/"); // home page pe redirect
+      navigate("/"); 
     }, 1500);
   }
 
@@ -58,9 +53,9 @@ function AddFood({ addFood }) {
       <h1 className="page-title">Add Food Item</h1>
 
       <div className="form-card">
-        {/* Error message */}
+      
         {error && <div className="msg error">{error}</div>}
-        {/* Success message */}
+        
         {success && <div className="msg success">{success}</div>}
 
         <div className="form-group">

@@ -87,7 +87,6 @@ function App() {
     return diffDays;
   }
 
-  // ─── GET STATUS ───────────────────────────────────────────
   function getStatus(expiryDate) {
     const days = getDaysLeft(expiryDate);
     if (days < 0) return "expired";
@@ -95,7 +94,7 @@ function App() {
     return "fresh";
   }
 
-  // ─── RENDER ───────────────────────────────────────────────
+
   return (
     <div className={darkMode ? "app dark-mode" : "app"}>
       <BrowserRouter>
