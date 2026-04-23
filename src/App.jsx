@@ -8,6 +8,7 @@ import Alerts from "./pages/Alerts";
 import Search from "./pages/Search";
 import Settings from "./pages/Settings";
 import "./App.css";
+import SummaryBar from "./components/SummaryBar";
 
 function App() {
   // ─── STATE (localStorage se seedha load) ─────────────────

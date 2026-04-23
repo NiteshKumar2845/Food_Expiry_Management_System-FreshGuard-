@@ -1,12 +1,71 @@
+/* RESET EVERYTHING */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.page {
+  min-height: calc(100vh - 80px); /* subtract navbar height */
+  padding: 20px 30px;
+}
+
+.summary-bar,
+.chart-wrapper,
+.suggestion-box {
+  margin-bottom: 20px; /* not too big */
+}
+
+h1, h2, h3 {
+  margin: 0 0 10px 0;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0b0f0e;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  margin: 0;
+}
+
+.page {
+  padding: 20px 30px;
+}
+
+header {
+  backdrop-filter: blur(10px);
+  background: rgba(20, 20, 20, 0.8);
+}
 /* ===== LIGHT MODE (DEFAULT) ===== */
 .suggestion-box {
-  margin: 24px 0 32px;
-  padding: 18px;
-  border-radius: 16px;
+  margin: 28px 0 36px;
+  padding: 20px;
+  border-radius: 18px;
 
-  background: #f9fbfa; /* very light soft background */
-  border: 1px solid #e6f4ea;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  /* softer + premium */
+  background: linear-gradient(145deg, #f9fbfa, #f1f7f3);
+  border: 1px solid #e3efe7;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
 
 /* HEADER */
@@ -14,28 +73,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .suggestion-top h3 {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: #1b4332;
+  letter-spacing: 0.3px;
 }
 
 .suggestion-top .count {
   background: #d8f3dc;
   color: #2d6a4f;
-  padding: 4px 10px;
-  border-radius: 10px;
+  padding: 4px 12px;
+  border-radius: 12px;
   font-size: 12px;
+  font-weight: 600;
 }
 
 /* ITEMS */
 .suggestion-items {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 /* ROW */
@@ -43,35 +104,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
+  padding: 14px;
 
-  border-radius: 12px;
+  border-radius: 14px;
   background: #ffffff;
-  border: 1px solid #edf2f7;
+  border: 1px solid #eef2f6;
 
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .suggestion-row:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
 }
 
 /* LEFT */
 .row-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .icon-circle {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: #fff7ed;
+
+  /* subtle gradient */
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
 }
 
 /* TEXT */
@@ -82,42 +147,63 @@
 
 .name {
   font-weight: 600;
+  font-size: 15px;
   color: #111827;
 }
 
 .msg {
   font-size: 13px;
   color: #6b7280;
+  margin-top: 2px;
 }
 
 /* BADGE */
 .badge {
-  padding: 5px 12px;
-  border-radius: 10px;
+  padding: 6px 12px;
+  border-radius: 12px;
   font-size: 12px;
+  font-weight: 500;
 }
 
+/* expired */
 .badge.expired {
   background: #fee2e2;
   color: #b91c1c;
 }
 
+/* expiring */
 .badge.expiring {
   background: #fff3cd;
-  color: #e07b00;
+  color: #d97706;
 }
 
 /* ===== DARK MODE ===== */
 .dark .suggestion-box {
-  background: linear-gradient(135deg, #052e2b, #022c22);
+  background: linear-gradient(145deg, #052e2b, #022c22);
   border: 1px solid #065f46;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
+.dark .suggestion-top h3 {
+  color: #d8f3dc;
+}
+
+.dark .suggestion-top .count {
+  background: rgba(216, 243, 220, 0.2);
+  color: #bbf7d0;
+}
+
+/* rows */
 .dark .suggestion-row {
   background: #111827;
   border: 1px solid #1f2937;
 }
 
+.dark .suggestion-row:hover {
+  background: #0f172a;
+}
+
+/* text */
 .dark .name {
   color: #ffffff;
 }
@@ -126,10 +212,18 @@
   color: #9ca3af;
 }
 
+/* icon */
+.dark .icon-circle {
+  background: rgba(255, 237, 213, 0.1);
+}
+
+/* badges */
 .dark .badge.expired {
   background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
 }
 
 .dark .badge.expiring {
   background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
 }

@@ -19,7 +19,6 @@ function Dashboard({ foodList, getDaysLeft, getStatus, deleteFood }) {
 
   return (
     <div className="page">
-      <h1 className="page-title">Dashboard</h1>
 
       {/* ⚠️ Alert Banner */}
       {expiringToday > 0 && (
